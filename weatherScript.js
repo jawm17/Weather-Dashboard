@@ -29,7 +29,7 @@ function getInfo(search){
 
             var lat = response.coord.lat;
             var lon = response.coord.lon;
-            var coordinateURL = 'http://api.openweathermap.org/data/2.5/uvi?appid=931672d40ebb1249a8a9be40dcd47e09&lat='+lat+'&lon='+lon+'';
+            var coordinateURL = 'https://api.openweathermap.org/data/2.5/uvi?appid=931672d40ebb1249a8a9be40dcd47e09&lat='+lat+'&lon='+lon+'';
             $.ajax({
                 url: coordinateURL,
                 method: "GET"
