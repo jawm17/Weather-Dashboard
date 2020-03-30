@@ -46,7 +46,6 @@ function getInfo(search){
 
 function updateHistory(place) {
     // if place is already in history
-    console.log(historyList.indexOf(place));
     if (historyList.indexOf(place) !== "-1") {
         // remove element from history
         var id = "#" + place;
