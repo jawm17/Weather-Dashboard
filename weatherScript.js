@@ -1,12 +1,12 @@
-var historyList = ["Austin"];
+// global variables
+var historyList = [];
+
+// search button clicked
 $(".searchBtn").click(function () {
     event.preventDefault();
-    var search = $("#searchTerm").val();
+    // pass the search term to getInfo function
+    getInfo($("#searchTerm").val());
     $("#searchTerm").val("");
-    getInfo(search);
-});
-$(".hItem").click(function(){
-    getInfo(this.textContent);
 });
 
 function getInfo(search){
@@ -34,14 +34,25 @@ function getInfo(search){
 }
 
 function updateHistory(place) {
-    for (var i = 0; i < historyList.length; i++) {
-        var newHistory = document.createElement("div");
-        newHistory.innerHTML = '<li class="list-group-item hItem">' + place + '</li>';
-        newHistory.addEventListener("click", function () {
-            getInfo(this.textContent);
-        })
-        $(".history").append(newHistory);
+    // if place is already in history
+    if (historyList.indexOf(place) != "-1") {
+        // remove element from history
+        $("#" + place).remove();
     }
+    // if place is not in history
+    else {
+        // add place to historyList
+        historyList.push(place);
+    }
+    
+    // create new history element
+    var newHistory = document.createElement("div");
+    newHistory.innerHTML = '<li class="list-group-item hItem" id='+ place + '>' + place + '</li>';
+    newHistory.addEventListener("click", function () {
+        getInfo(this.textContent);
+    });
+    // append history element to history list
+    $(".history").prepend(newHistory);
 }
 
 getInfo("austin");
