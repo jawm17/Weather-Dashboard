@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- icon link -->
     <script src="https://kit.fontawesome.com/07a78d7541.js" crossorigin="anonymous"></script>
     <!-- link to stylesheet -->
     <link rel="stylesheet" href="style.css">
@@ -15,23 +16,23 @@
 <body>
     <!-- main header -->
     <header class="mainHeader"> Weather Dashboard</header>
-    
+
     <!-- search/history div -->
     <aside class="left">
         <!-- search area -->
-        <div class="search">
+        <div class="searchArea">
             <h4>Search for a city:</h4>
             <form class="form-inline">
                 <!-- input field -->
                 <input type="text" class="form-control mb-2 mr-sm-2" id="searchTerm">
                 <!-- submit button -->
-                <button type="submit" class="btn btn-primary mb-2"> <i class="fas fa-search"></i> </button>
+                <button type="submit" class="btn btn-primary mb-2 searchBtn"> <i class="fas fa-search"></i> </button>
               </form>
         </div>
         <!-- search history -->
         <ul class="list-group history">
-            <li class="list-group-item">Austin</li>
-            <li class="list-group-item">Chicago</li>
+            <li class="list-group-item hItem">Austin</li>
+            <li class="list-group-item hItem">Chicago</li>
         </ul>
     </aside>
 
