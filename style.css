@@ -9,7 +9,8 @@
     background-color: #f8f6f6;
     width: 400px;
     height: calc(100vh - 70px);
-
+    float: left;
+    margin-right: 20px;
 }
 .searchArea{
     margin-left: 20px;
@@ -20,4 +21,24 @@
     cursor: pointer;
     width: 325px;
     margin-left: 20px;
+}
+.weatherBox{
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+.forecast{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+.day{
+    background-color: lightblue;
+    width: 150px;
+    height: 200px;
+}
+p1{
+    display: block;
+    margin-top: 20px;
 }
