@@ -1,7 +1,22 @@
-.mainHeader {
+.mainHeader{
     background-color: #292929;
     color: white;
     text-align: center;
     height: 70px;
     font-size: 40px;
+}
+.left{
+    background-color: #f8f6f6;
+    width: 400px;
+    height: calc(100vh - 70px);
+
+}
+.search{
+    margin-left: 20px;
+    padding-top: 20px;
+    margin-bottom: 15px;
+}
+.history{
+    width: 325px;
+    margin-left: 20px;
 }
