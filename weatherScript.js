@@ -27,6 +27,17 @@ function getInfo(search){
             $(".humidity").text("Humidity: " + humidity + "%");
             $(".wind").text("Wind Speed: " + windSpeed + " MPH");
 
+            var lat = response.coord.lat;
+            var lon = response.coord.lon;
+            var coordinateURL = 'http://api.openweathermap.org/data/2.5/uvi?appid=931672d40ebb1249a8a9be40dcd47e09&lat='+lat+'&lon='+lon+'';
+            $.ajax({
+                url: coordinateURL,
+                method: "GET"
+              }).then(function(response) {
+                var uv = response.value;
+                $(".index").text("UV Index: " + uv);
+              });
+
         },
         error: function (xhr, status, error) {
         }
