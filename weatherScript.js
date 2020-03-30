@@ -35,19 +35,22 @@ function getInfo(search){
 
 function updateHistory(place) {
     // if place is already in history
-    if (historyList.indexOf(place) != "-1") {
+    console.log(historyList.indexOf(place));
+    if (historyList.indexOf(place) !== "-1") {
         // remove element from history
-        $("#" + place).remove();
+        var id = "#" + place;
+        id = id.replace(/ /g,'')
+        $(id).remove();
     }
     // if place is not in history
     else {
         // add place to historyList
         historyList.push(place);
     }
-    
+
     // create new history element
     var newHistory = document.createElement("div");
-    newHistory.innerHTML = '<li class="list-group-item hItem" id='+ place + '>' + place + '</li>';
+    newHistory.innerHTML = '<li class="list-group-item hItem" id='+ place.replace(/ /g,'') + '>' + place + '</li>';
     newHistory.addEventListener("click", function () {
         getInfo(this.textContent);
     });
