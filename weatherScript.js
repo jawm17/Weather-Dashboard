@@ -39,7 +39,24 @@ function getInfo(search) {
             }).then(function (response) {
                 // display UV index data
                 var uv = response.value;
-                $(".index").text("UV Index: " + uv);
+                $("#index").text(uv);
+
+                // color UV index appropriately
+                if(uv<3){
+                    $("#index").attr("style","background-color:#00CACD");
+                }
+                else if(uv<5){
+                    $("#index").attr("style","background-color:#008F00");
+                }
+                else if(uv<7){
+                    $("#index").attr("style","background-color:#CD5600");
+                }
+                else if(uv<10){
+                    $("#index").attr("style","background-color:#D01E00");
+                }
+                else{
+                    $("#index").attr("style","background-color:#E361B4");
+                }
             });
 
             // forecastURL used for the 5 day forecast data
@@ -48,11 +65,13 @@ function getInfo(search) {
                 url: forecastURL,
                 method: "GET"
             }).then(function (response) {
-                var forecastDate = "";
                 console.log(response);
-                for (var i = 0; i < 39; i += 8) {
-                    forecastDate = response.list[i].dt_txt.slice(5, 7) + "/" + response.list[i].dt_txt.slice(8, 10) + "/" + response.list[i].dt_txt.slice(0, 4);
-                }
+
+                var date1 = response.list[2].dt_txt.slice(5, 7) + "/" + response.list[2].dt_txt.slice(8, 10) + "/" + response.list[2].dt_txt.slice(0, 4);
+                var date2 = response.list[9].dt_txt.slice(5, 7) + "/" + response.list[9].dt_txt.slice(8, 10) + "/" + response.list[9].dt_txt.slice(0, 4);
+                var date3 = response.list[17].dt_txt.slice(5, 7) + "/" + response.list[17].dt_txt.slice(8, 10) + "/" + response.list[17].dt_txt.slice(0, 4);
+                var date4 = response.list[25].dt_txt.slice(5, 7) + "/" + response.list[25].dt_txt.slice(8, 10) + "/" + response.list[25].dt_txt.slice(0, 4);
+                var date5 = response.list[33].dt_txt.slice(5, 7) + "/" + response.list[33].dt_txt.slice(8, 10) + "/" + response.list[33].dt_txt.slice(0, 4);
                 
                 var totalTemp1 = average(0,7,"temperature",response);
                 var totalTemp2 = average(7,15,"temperature",response);

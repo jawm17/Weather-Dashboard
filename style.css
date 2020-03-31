@@ -37,23 +37,9 @@
     background-color: lightblue;
     width: 150px;
     height: 200px;
+    display: block;
 }
 p1{
     display: block;
     margin-top: 20px;
-}
-.very-high{
-    background-color: #CD2791;
-}
-.high{
-    background-color: #D01E00;
-}
-.moderate{
-    background-color: #CD5600;
-}
-.low{
-    background-color: #008F00;
-}
-.very-low{
-    background-color: #00CACD;
 }
