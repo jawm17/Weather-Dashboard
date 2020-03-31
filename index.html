@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CDN  -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- icon link -->
     <script src="https://kit.fontawesome.com/07a78d7541.js" crossorigin="anonymous"></script>
     <!-- link to stylesheet -->
     <link rel="stylesheet" href="style.css">
+    <!-- link to moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
     <title>Weather Forecast</title>
 </head>
+
 <body>
     <!-- main header -->
     <header class="mainHeader"> Weather Dashboard</header>
@@ -27,7 +32,7 @@
                 <input type="text" class="form-control mb-2 mr-sm-2" id="searchTerm">
                 <!-- submit button -->
                 <button type="submit" class="btn btn-primary mb-2 searchBtn"> <i class="fas fa-search"></i> </button>
-              </form>
+            </form>
         </div>
         <!-- search history -->
         <ul class="list-group history">
@@ -37,11 +42,11 @@
     <!-- weather area -->
     <div class="card weatherBox">
         <div class="card-body">
-          <h3 class="place"></h3>
-          <p1 class="temperature">Temperature: </p1>
-          <p1 class="humidity">Humidity: </p1>
-          <p1 class="wind">Wind Speed: </p1>
-          <p1 class="uvIndex">UV Index: <span id="index"></span></p1>
+            <h3 class="place"></h3>
+            <p1 class="temperature">Temperature: </p1>
+            <p1 class="humidity">Humidity: </p1>
+            <p1 class="wind">Wind Speed: </p1>
+            <p1 class="uvIndex">UV Index: <span id="index"></span></p1>
         </div>
     </div>
 
@@ -75,4 +80,5 @@
     <!-- Link to external script -->
     <script src="weatherScript.js"></script>
 </body>
+
 </html>

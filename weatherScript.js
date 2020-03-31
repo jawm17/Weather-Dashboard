@@ -11,6 +11,12 @@ $(".searchBtn").click(function () {
 
 // get data from API and display it
 function getInfo(search) {
+    // clear info areas
+    for(var i = 0; i<5;i++){
+        $("."+i).empty();
+    }
+    $("weatherBox").empty();
+
     // queryURL gets weather info from "search" for the day
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + search + "&appid=" + "931672d40ebb1249a8a9be40dcd47e09";
     $.ajax({
@@ -24,7 +30,8 @@ function getInfo(search) {
 
             // pass place to the updateHistory function and assign data to labels
             updateHistory(place);
-            $(".place").text(place);
+            $(".place").text(place + " (" + moment().format('L')+")");
+            $(".place").append($('<img class="bigIcon">').attr("src","http://openweathermap.org/img/wn/"+ response.weather[0].icon +"@2x.png"));
             $(".temperature").text("Temperature: " + temp + " F");
             $(".humidity").text("Humidity: " + humidity + "%");
             $(".wind").text("Wind Speed: " + windSpeed + " MPH");
@@ -65,34 +72,45 @@ function getInfo(search) {
                 url: forecastURL,
                 method: "GET"
             }).then(function (response) {
-                console.log(response);
 
+                // get date info for each day
                 var date1 = response.list[2].dt_txt.slice(5, 7) + "/" + response.list[2].dt_txt.slice(8, 10) + "/" + response.list[2].dt_txt.slice(0, 4);
                 var date2 = response.list[9].dt_txt.slice(5, 7) + "/" + response.list[9].dt_txt.slice(8, 10) + "/" + response.list[9].dt_txt.slice(0, 4);
                 var date3 = response.list[17].dt_txt.slice(5, 7) + "/" + response.list[17].dt_txt.slice(8, 10) + "/" + response.list[17].dt_txt.slice(0, 4);
                 var date4 = response.list[25].dt_txt.slice(5, 7) + "/" + response.list[25].dt_txt.slice(8, 10) + "/" + response.list[25].dt_txt.slice(0, 4);
                 var date5 = response.list[33].dt_txt.slice(5, 7) + "/" + response.list[33].dt_txt.slice(8, 10) + "/" + response.list[33].dt_txt.slice(0, 4);
                 var dates = [date1,date2,date3,date4,date5];
-                console.log(dates[0]);
-
+                // get icon info for each day
+                var icon1 = response.list[5].weather[0].icon;
+                var icon2 = response.list[8].weather[0].icon;
+                var icon3 = response.list[20].weather[0].icon;
+                var icon4 = response.list[30].weather[0].icon;
+                var icon5 = response.list[34].weather[0].icon;
+                var icons = [icon1,icon2,icon3,icon4,icon5]
+                // get temperature info for each day
                 var totalTemp1 = average(0,7,"temperature",response) + "F";
                 var totalTemp2 = average(7,15,"temperature",response) + "F";
                 var totalTemp3 = average(15,23,"temperature",response) + "F";
                 var totalTemp4 = average(23,31,"temperature",response) + "F";
                 var totalTemp5 = average(31,39,"temperature",response) + "F";
                 var temps = [totalTemp1,totalTemp2,totalTemp3,totalTemp4,totalTemp5];
-
+                // get humidity info for each day
                 var humidity1 = average(0,7,"humidity",response);
                 var humidity2 = average(7,15,"humidity",response);
                 var humidity3 = average(15,23,"humidity",response);
                 var humidity4 = average(23,31,"humidity",response);
                 var humidity5 = average(31,39,"humidity",response);
                 var humidities = [humidity1,humidity2,humidity3,humidity4,humidity5];
-
+                
+                // place info on each forecast card
                 for(var i = 0; i<5;i++){
                     var dispDate = $("<p2>");
                     dispDate.text(dates[i]);
                     $("."+i).append(dispDate);
+
+                    var dispIcon = $("<img>");
+                    dispIcon.attr("src","http://openweathermap.org/img/wn/"+ icons[i] +".png");
+                    $("."+i).append(dispIcon);
 
                     var dispTemp = $("<p2>");
                     dispTemp.text("Temp: " + temps[i]);
@@ -102,22 +120,26 @@ function getInfo(search) {
                     dispHumidity.text("Humidity: " + humidities[i]);
                     $("."+i).append(dispHumidity);
                 }
-                console.log(humidity1);
             });
         },
+        // if API returns an error, alert user
         error: function (xhr, status, error) {
+            alert("You must input a real city.")
         }
     });
 }
 
+// average function gets the average data over a set period
 function average(start,end,type,response){
     var total = 0;
+    // if type = temperature, return average temp in fahrenheit
     if(type==="temperature"){
         for (var i=start; i<end; i++){
             total += response.list[i].main.temp;
         }
         return (((total/(end-start)) - 273.15) * 1.80 + 32).toFixed(2);
     }
+    // else if type = humidity, return average humidity
     else if (type==="humidity"){
         for (var i=start; i<end; i++){
             total += response.list[i].main.humidity;
@@ -150,4 +172,5 @@ function updateHistory(place) {
     $(".history").prepend(newHistory);
 }
 
+// starts program with data from Austin, TX
 getInfo("austin");

@@ -47,3 +47,6 @@ p2{
     display: block;
     margin-bottom: 10px;
 }
+.bigIcon{
+    float: right;
+}
