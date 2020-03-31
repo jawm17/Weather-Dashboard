@@ -72,18 +72,36 @@ function getInfo(search) {
                 var date3 = response.list[17].dt_txt.slice(5, 7) + "/" + response.list[17].dt_txt.slice(8, 10) + "/" + response.list[17].dt_txt.slice(0, 4);
                 var date4 = response.list[25].dt_txt.slice(5, 7) + "/" + response.list[25].dt_txt.slice(8, 10) + "/" + response.list[25].dt_txt.slice(0, 4);
                 var date5 = response.list[33].dt_txt.slice(5, 7) + "/" + response.list[33].dt_txt.slice(8, 10) + "/" + response.list[33].dt_txt.slice(0, 4);
-                
-                var totalTemp1 = average(0,7,"temperature",response);
-                var totalTemp2 = average(7,15,"temperature",response);
-                var totalTemp3 = average(15,23,"temperature",response);
-                var totalTemp4 = average(23,31,"temperature",response);
-                var totalTemp5 = average(31,39,"temperature",response);
+                var dates = [date1,date2,date3,date4,date5];
+                console.log(dates[0]);
+
+                var totalTemp1 = average(0,7,"temperature",response) + "F";
+                var totalTemp2 = average(7,15,"temperature",response) + "F";
+                var totalTemp3 = average(15,23,"temperature",response) + "F";
+                var totalTemp4 = average(23,31,"temperature",response) + "F";
+                var totalTemp5 = average(31,39,"temperature",response) + "F";
+                var temps = [totalTemp1,totalTemp2,totalTemp3,totalTemp4,totalTemp5];
 
                 var humidity1 = average(0,7,"humidity",response);
                 var humidity2 = average(7,15,"humidity",response);
                 var humidity3 = average(15,23,"humidity",response);
                 var humidity4 = average(23,31,"humidity",response);
                 var humidity5 = average(31,39,"humidity",response);
+                var humidities = [humidity1,humidity2,humidity3,humidity4,humidity5];
+
+                for(var i = 0; i<5;i++){
+                    var dispDate = $("<p2>");
+                    dispDate.text(dates[i]);
+                    $("."+i).append(dispDate);
+
+                    var dispTemp = $("<p2>");
+                    dispTemp.text("Temp: " + temps[i]);
+                    $("."+i).append(dispTemp);
+
+                    var dispHumidity = $("<p2>");
+                    dispHumidity.text("Humidity: " + humidities[i]);
+                    $("."+i).append(dispHumidity);
+                }
                 console.log(humidity1);
             });
         },
